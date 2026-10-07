@@ -1,1 +1,6 @@
 .env
+functions-quickstart-dotnet-azd-eventgrid-blob
+.DS_Store
+__azurite_*
+__blobstorage__
+__queuestorage__
