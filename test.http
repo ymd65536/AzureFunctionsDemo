@@ -1,0 +1,28 @@
+@host = http://localhost:7071
+@functionName = ProcessBlobUpload
+@blobContainer = unprocessed-pdf
+@blobName = PerksPlus.pdf
+@storageAccount = devstoreaccount1
+@blobEndpoint = http://127.0.0.1:10000
+
+### Check that the local Functions host is running.
+GET {{host}}/admin/host/status
+
+### Upload the PDF to Azurite first, then simulate its BlobCreated event.
+POST {{host}}/runtime/webhooks/blobs?functionName=Host.Functions.{{functionName}}
+Content-Type: application/json
+aeg-event-type: Notification
+
+{
+  "specversion": "1.0",
+  "id": "{{$guid}}",
+  "source": "/subscriptions/local/resourceGroups/local/providers/Microsoft.Storage/storageAccounts/{{storageAccount}}",
+  "subject": "/blobServices/default/containers/{{blobContainer}}/blobs/{{blobName}}",
+  "type": "Microsoft.Storage.BlobCreated",
+  "time": "{{$datetime iso8601}}",
+  "data": {
+    "api": "PutBlob",
+    "blobType": "BlockBlob",
+    "url": "{{blobEndpoint}}/{{storageAccount}}/{{blobContainer}}/{{blobName}}"
+  }
+}
