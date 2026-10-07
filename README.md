@@ -16,6 +16,7 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 ```bash
 azd version
+# azd version 1.35.0 (commit 170ebb858071da353cc9bf8657a377bff268ba36) (stable)
 ```
 
 ### Azure Developer CLIでログインする
