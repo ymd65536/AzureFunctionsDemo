@@ -1,0 +1,6 @@
+{
+  "name": "Azure Functions .NET 10",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:10.0-noble",
+  "remoteUser": "root",
+  "postCreateCommand": "grep -qxF \"PS1='$ '\" ~/.bashrc || echo \"PS1='$ '\" >> ~/.bashrc"
+}
